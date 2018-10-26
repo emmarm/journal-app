@@ -4,5 +4,11 @@
   "main": "index.js",
   "repository": "https://github.com/mawarijo/journal-app.git",
   "author": "mawarijo <mdopure@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "^5.8.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "prettier": "^1.14.3"
+  }
 }
