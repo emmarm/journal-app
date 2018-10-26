@@ -1,0 +1,8 @@
+{
+  "name": "journal-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mawarijo/journal-app.git",
+  "author": "mawarijo <mdopure@gmail.com>",
+  "license": "MIT"
+}
