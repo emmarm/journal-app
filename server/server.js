@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+require('./models/User');
 require('./services/passport');
 const keys = require('./config/keys');
 
