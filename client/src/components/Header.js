@@ -1,9 +1,33 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const Header = props => (
-  <div>
-    <h1>Greatful Day</h1>
-  </div>
-);
+class Header extends React.Component {
+  renderNav = () => {
+    switch (this.props.auth) {
+      case null:
+        return;
+      case false:
+        return <a href="/auth/google">Log in</a>;
+      default:
+        return <a href="/api/logout">Log out</a>;
+    }
+  };
 
-export default Header;
+  render() {
+    return (
+      <div>
+        <Link to={this.props.auth ? '/journal' : '/'}>
+          <h1>Greatful Day</h1>
+        </Link>
+        {this.renderNav()}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(Header);
