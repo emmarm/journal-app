@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
-import { connect } from 'redux';
+import { connect } from 'react-redux';
 
 import * as actions from '../actions';
 import LandingPage from './LandingPage';
@@ -14,12 +14,8 @@ import NotFoundPage from './NotFoundPage';
 import DashboardPage from './DashboardPage';
 
 class App extends Component {
-  state = {
-    currentUser: null
-  };
-
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.getCurrentUser();
   }
 
   render() {
