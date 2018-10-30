@@ -5,3 +5,9 @@ export const getCurrentUser = () => async dispatch => {
 
   dispatch({ type: 'GET_CURRENT_USER', payload: currentUser.data });
 };
+
+export const handleToken = token => async dispatch => {
+  const payment = await axios.post('/api/payment', token);
+
+  dispatch({ type: 'GET_CURRENT_USER', payload: payment.data });
+};
