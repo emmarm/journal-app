@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import StripeButton from './StripeButton';
+
 class Header extends React.Component {
   renderNav = () => {
     switch (this.props.auth) {
@@ -10,7 +12,12 @@ class Header extends React.Component {
       case false:
         return <a href="/auth/google">Log in</a>;
       default:
-        return <a href="/api/logout">Log out</a>;
+        return (
+          <div>
+            <StripeButton />
+            <a href="/api/logout">Log out</a>
+          </div>
+        );
     }
   };
 
