@@ -14,7 +14,11 @@ class Header extends React.Component {
       default:
         return (
           <div>
-            <StripeButton />
+            {this.props.auth.isPremium ? (
+              <p>Premium Unlocked</p>
+            ) : (
+              <StripeButton />
+            )}
             <a href="/api/logout">Log out</a>
           </div>
         );
