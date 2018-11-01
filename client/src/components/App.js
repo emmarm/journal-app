@@ -3,6 +3,7 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
+import * as routes from '../constants/routes';
 import LandingPage from './LandingPage';
 import JournalPage from './JournalPage';
 import NewJournalPage from './NewJournalPage';
@@ -25,17 +26,25 @@ class App extends Component {
           <div>
             <Header />
             <Switch>
-              <Route path="/" exact component={LandingPage} />
-              <Route path="/journals" exact component={DashboardPage} />
-              <Route path="/journals/new" exact component={NewJournalPage} />
-              <Route path="/journals/:id" exact component={JournalPage} />
+              <Route path={routes.LANDING} exact component={LandingPage} />
+              <Route path={routes.DASHBOARD} exact component={DashboardPage} />
               <Route
-                path="/journals/:id/edit"
+                path={routes.NEW_JOURNAL}
+                exact
+                component={NewJournalPage}
+              />
+              <Route path={routes.JOURNAL} exact component={JournalPage} />
+              <Route
+                path={routes.EDIT_JOURNAL}
                 exact
                 component={EditJournalPage}
               />
-              <Route path="/settings" exact component={SettingsPage} />
-              <Route path="/settings/edit" exact component={EditSettingsPage} />
+              <Route path={routes.SETTINGS} exact component={SettingsPage} />
+              <Route
+                path={routes.EDIT_SETTINGS}
+                exact
+                component={EditSettingsPage}
+              />
               <Route component={NotFoundPage} />
             </Switch>
           </div>

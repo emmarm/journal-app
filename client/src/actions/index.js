@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import * as routes from '../constants/routes';
+
 export const getCurrentUser = () => async dispatch => {
   const currentUser = await axios.get('/api/current_user');
 
@@ -15,6 +17,6 @@ export const handleToken = token => async dispatch => {
 export const handleSubmitJournal = (data, history) => async dispatch => {
   const journal = await axios.post('/api/journals', data);
 
-  history.push('/journals');
+  history.push(routes.DASHBOARD);
   dispatch({ type: 'ADD_JOURNAL', payload: journal.data });
 };
