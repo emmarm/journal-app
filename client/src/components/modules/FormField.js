@@ -6,7 +6,7 @@ const FormField = ({ input, label, meta, name, title, type }) => (
       {label}
     </label>
     <input {...input} id={name} type={type ? type : 'text'} />
-    <p>{meta.error}</p>
+    <p>{meta.touched && meta.error}</p>
   </div>
 );
 

@@ -38,6 +38,17 @@ class JournalForm extends React.Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if (!values.gratefulFor) {
+    errors.gratefulFor = `Please add something you're grateful for.`;
+  }
+
+  return errors;
+}
+
 export default reduxForm({
-  form: 'journalForm'
+  form: 'journalForm',
+  validate
 })(JournalForm);
