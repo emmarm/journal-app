@@ -16,5 +16,5 @@ export const handleSubmitJournal = (data, history) => async dispatch => {
   const journal = await axios.post('/api/journals', data);
 
   history.push('/journals');
-  dispatch({ type: 'GET_CURRENT_USER', payload: journal.data });
+  dispatch({ type: 'ADD_JOURNAL', payload: journal.data });
 };
