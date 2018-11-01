@@ -1,9 +1,20 @@
 import React from 'react';
+import { reduxForm } from 'redux-form';
 
-const NewJournalPage = props => (
-  <div>
-    <h2>New Journal</h2>
-  </div>
-);
+import JournalForm from './modules/JournalForm';
 
-export default NewJournalPage;
+class NewJournalPage extends React.Component {
+  state = {};
+
+  render() {
+    return (
+      <div>
+        <h2>New Journal</h2>
+      </div>
+    );
+  }
+}
+
+export default reduxForm({
+  form: 'newJournalForm'
+})(NewJournalPage);
