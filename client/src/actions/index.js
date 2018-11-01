@@ -11,3 +11,10 @@ export const handleToken = token => async dispatch => {
 
   dispatch({ type: 'GET_CURRENT_USER', payload: payment.data });
 };
+
+export const handleSubmitJournal = (data, history) => async dispatch => {
+  const journal = await axios.post('/api/journals', data);
+
+  history.push('/journals');
+  dispatch({ type: 'GET_CURRENT_USER', payload: journal.data });
+};

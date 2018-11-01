@@ -1,18 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
+import * as actions from '../actions';
 import JournalForm from './modules/JournalForm';
 
 class NewJournalPage extends React.Component {
-  state = {};
+  handleSubmitJournal = values => {
+    const { history } = this.props;
+
+    this.props.handleSubmitJournal(values, history);
+  };
 
   render() {
     return (
       <div>
         <h2>New Journal</h2>
-        <JournalForm />
+        <JournalForm handleSubmitJournal={this.handleSubmitJournal} />
       </div>
     );
   }
 }
 
-export default NewJournalPage;
+export default connect(
+  null,
+  actions
+)(withRouter(NewJournalPage));

@@ -30,7 +30,11 @@ class JournalForm extends React.Component {
     ));
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(values => console.log(values))}>
+      <form
+        onSubmit={this.props.handleSubmit(values =>
+          this.props.handleSubmitJournal(values)
+        )}
+      >
         {this.renderFields()}
         <button type="submit">Submit</button>
       </form>
