@@ -1,5 +1,4 @@
 import React from 'react';
-import { reduxForm } from 'redux-form';
 
 import JournalForm from './modules/JournalForm';
 
@@ -10,11 +9,10 @@ class NewJournalPage extends React.Component {
     return (
       <div>
         <h2>New Journal</h2>
+        <JournalForm />
       </div>
     );
   }
 }
 
-export default reduxForm({
-  form: 'newJournalForm'
-})(NewJournalPage);
+export default NewJournalPage;
