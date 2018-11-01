@@ -26,11 +26,11 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path="/" exact component={LandingPage} />
-              <Route path="/journal" exact component={DashboardPage} />
-              <Route path="/journal/new" exact component={NewJournalPage} />
-              <Route path="/journal/:id" exact component={JournalPage} />
+              <Route path="/journals" exact component={DashboardPage} />
+              <Route path="/journals/new" exact component={NewJournalPage} />
+              <Route path="/journals/:id" exact component={JournalPage} />
               <Route
-                path="/journal/:id/edit"
+                path="/journals/:id/edit"
                 exact
                 component={EditJournalPage}
               />
