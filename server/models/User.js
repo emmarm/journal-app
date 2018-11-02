@@ -6,6 +6,12 @@ const userSchema = new Schema({
   isPremium: {
     type: Boolean,
     default: false
+  },
+  settings: {
+    journalType: {
+      type: String,
+      default: 'DEFAULT'
+    }
   }
 });
 
