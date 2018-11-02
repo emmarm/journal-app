@@ -16,8 +16,8 @@ const journalSchema = new Schema({
   journalType: {
     type: String,
     required: true,
-    enum: ['default', 'kids'],
-    default: 'default'
+    enum: ['DEFAULT', 'KIDS'],
+    default: 'DEFAULT'
   },
   weather: {
     icon: {
