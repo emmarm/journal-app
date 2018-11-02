@@ -9,7 +9,9 @@ class NewJournalPage extends React.Component {
   handleSubmitJournal = values => {
     const { history } = this.props;
 
-    this.props.handleSubmitJournal(values, history);
+    console.log('values: ', values);
+
+    this.props.handleAddJournal(values, history);
   };
 
   render() {
