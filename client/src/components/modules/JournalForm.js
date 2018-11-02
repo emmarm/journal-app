@@ -1,33 +1,28 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 
+import * as journals from '../../constants/journalTypes';
+import * as fields from '../../constants/fieldTypes';
+import FormGroup from './FormGroup';
 import FormField from './FormField';
 
-const FIELDS = [
-  {
-    label: "I'm grateful for...",
-    name: 'gratefulFor',
-    title: "Try to think of at least 3 things you're grateful for."
-  },
-  {
-    label: 'Things that will make today great...',
-    name: 'willMakeGreat',
-    title:
-      'Try to think of at least 3 things that would make today an awesome day.'
-  },
-  {
-    label: 'I am...',
-    name: 'affirmation',
-    title:
-      'Describe yourself the way you want to be. Repeat this affirmation to yourself throughout the day.'
-  }
-];
-
 class JournalForm extends React.Component {
-  renderFields = () =>
-    FIELDS.map(field => (
-      <Field component={FormField} key={field.name} {...field} />
-    ));
+  renderSections = () => {
+    return journals[this.props.journalType].morning.map(
+      section =>
+        section.count > 1 ? (
+          <FormGroup key={section.type} {...section} />
+        ) : (
+          <Field
+            key={section.type}
+            name={section.type}
+            component={FormField}
+            {...fields[section.type]}
+          />
+        )
+    );
+  };
   render() {
     return (
       <form
@@ -35,7 +30,7 @@ class JournalForm extends React.Component {
           this.props.handleSubmitJournal(values)
         )}
       >
-        {this.renderFields()}
+        {this.renderSections()}
         <button type="submit">Submit</button>
       </form>
     );
@@ -52,7 +47,13 @@ function validate(values) {
   return errors;
 }
 
+const mapStateToProps = state => ({
+  journalType: state.auth.settings.journalType
+});
+
+const StatefulJournalForm = connect(mapStateToProps)(JournalForm);
+
 export default reduxForm({
   form: 'journalForm',
   validate
-})(JournalForm);
+})(StatefulJournalForm);
