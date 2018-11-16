@@ -7,6 +7,7 @@ import FormField from './FormField';
 class FormGroup extends React.Component {
   renderFields = () => {
     const { type, count } = this.props;
+
     return new Array(count).fill().map((item, index) => (
       <div key={`${fields[type].name}${index + 1}`}>
         <label htmlFor={`${fields[type].name}${index + 1}`}>{`${index +

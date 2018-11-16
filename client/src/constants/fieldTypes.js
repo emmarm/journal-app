@@ -13,3 +13,13 @@ export const AFFIRMATION = {
   name: 'affirmation',
   title: `Describe yourself the way you want to be. Repeat this affirmation throughout the day.`
 };
+export const WERE_GREAT = {
+  label: 'Today was great because...',
+  name: 'wereGreat',
+  title: `Write some awesome things you did or that happened today.`
+};
+export const IMPROVE_TOMORROW = {
+  label: 'I could do better tomorrow by...',
+  name: 'improveTomorrow',
+  title: `Think of something you did that could have been improved.`
+};
