@@ -9,9 +9,23 @@ class NewJournalPage extends React.Component {
   handleSubmitJournal = values => {
     const { history } = this.props;
 
-    console.log('values: ', values);
+    const entries = {};
 
-    this.props.handleAddJournal(values, history);
+    const fields = Object.keys(values);
+    fields.forEach(field => {
+      if (/[0-9]/.test(field.charAt(field.length - 1))) {
+        const fieldGroup = field.replace(/([a-zA-Z]+)[0-9]*/, '$1');
+
+        if (!entries[fieldGroup]) {
+          entries[fieldGroup] = [];
+        }
+        entries[fieldGroup].push(values[field]);
+      } else {
+        entries[field] = values[field];
+      }
+    });
+
+    this.props.handleAddJournal(entries, history);
   };
 
   render() {
