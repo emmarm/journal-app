@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import moment from 'moment';
 
 import * as actions from '../actions';
 import JournalForm from './modules/JournalForm';
@@ -31,7 +32,7 @@ class NewJournalPage extends React.Component {
   render() {
     return (
       <div>
-        <h2>New Journal</h2>
+        <h2>{moment().format('dddd, MMMM Do YYYY')}</h2>
         <JournalForm handleSubmitJournal={this.handleSubmitJournal} />
       </div>
     );
