@@ -1,11 +1,21 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import styled from 'react-emotion';
 
 import * as journals from '../../constants/journalTypes';
 import * as fields from '../../constants/fieldTypes';
 import FormGroup from './FormGroup';
 import FormField from './FormField';
+
+const Form = styled('form')`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 30rem;
+`;
+
+const Header = styled('h3')``;
 
 class JournalForm extends React.Component {
   state = {
@@ -39,7 +49,7 @@ class JournalForm extends React.Component {
   };
   render() {
     return (
-      <form
+      <Form
         onSubmit={this.props.handleSubmit(values =>
           this.props.handleSubmitJournal(values)
         )}
@@ -55,7 +65,7 @@ class JournalForm extends React.Component {
         </button>
         {this.state.showEvening && this.renderSections('evening')}
         <button type="submit">Submit</button>
-      </form>
+      </Form>
     );
   }
 }
