@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
+import { ThemeProvider } from 'emotion-theming';
 
 import App from './components/App';
 import reducers from './reducers';
@@ -34,13 +35,24 @@ const theme = {
     grey600: '#5f5f5f',
     grey700: '#464646',
     grey800: '#2d2d2d',
-    grey900: '#141414'
+    grey900: '#141414',
+    primary100: '#FFDFC7',
+    primary200: '#FFC296',
+    primary300: '#FFA564',
+    primary400: '#FF8732',
+    primary500: '#FF6A00',
+    primary600: '#CA5400',
+    primary700: '#963E00',
+    primary800: '#622800',
+    primary900: '#2E1300'
   }
 };
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ThemeProvider>,
   document.getElementById('root')
 );

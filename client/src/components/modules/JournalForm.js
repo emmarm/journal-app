@@ -15,7 +15,13 @@ const Form = styled('form')`
   max-width: 30rem;
 `;
 
-const Header = styled('h3')``;
+const Header = styled('h3')`
+  color: ${({ theme }) => theme.default.primary500};
+  font-family: ${({ theme }) => theme.titleFont.family};
+  font-size: 2rem;
+  font-style: ${({ theme }) => theme.titleFont.style};
+  font-weight: ${({ theme }) => theme.titleFont.weight};
+`;
 
 class JournalForm extends React.Component {
   state = {
@@ -54,12 +60,12 @@ class JournalForm extends React.Component {
           this.props.handleSubmitJournal(values)
         )}
       >
-        <h3>Morning Journal</h3>
+        <Header>Morning Journal</Header>
         <button onClick={this.toggleShowMorning}>
           {this.state.showMorning ? 'Hide' : 'Show'}
         </button>
         {this.state.showMorning && this.renderSections('morning')}
-        <h3>Evening Journal</h3>
+        <Header>Evening Journal</Header>
         <button onClick={this.toggleShowEvening}>
           {this.state.showEvening ? 'Hide' : 'Show'}
         </button>

@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "emotion": "^9.2.12",
+    "emotion-theming": "^9.2.9",
     "http-proxy-middleware": "^0.19.0",
     "moment": "^2.22.2",
     "react": "^16.6.0",
