@@ -15,12 +15,44 @@ const Form = styled('form')`
   max-width: 30rem;
 `;
 
+const Section = styled('div')`
+  background: ${({ theme, evening }) =>
+    evening ? theme.default.grey900 : theme.default.primary100};
+  width: 100%;
+`;
+
+const Row = styled('div')`
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 3rem;
+`;
+
 const Header = styled('h3')`
   color: ${({ theme }) => theme.default.primary500};
   font-family: ${({ theme }) => theme.titleFont.family};
   font-size: 2rem;
   font-style: ${({ theme }) => theme.titleFont.style};
   font-weight: ${({ theme }) => theme.titleFont.weight};
+  margin: 1rem;
+  text-align: center;
+`;
+
+const ToggleButton = styled('button')`
+  background: ${({ theme }) => theme.default.primary400};
+  border: none;
+  border-radius: 0.25rem;
+  color: white;
+  height: 2rem;
+  width: 2rem;
+`;
+
+const SubmitButton = styled('button')`
+  background: ${({ theme }) => theme.default.primary500};
+  border: none;
+  border-radius: 0.25rem;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
 `;
 
 class JournalForm extends React.Component {
@@ -60,17 +92,25 @@ class JournalForm extends React.Component {
           this.props.handleSubmitJournal(values)
         )}
       >
-        <Header>Morning Journal</Header>
-        <button onClick={this.toggleShowMorning}>
-          {this.state.showMorning ? 'Hide' : 'Show'}
-        </button>
-        {this.state.showMorning && this.renderSections('morning')}
-        <Header>Evening Journal</Header>
-        <button onClick={this.toggleShowEvening}>
-          {this.state.showEvening ? 'Hide' : 'Show'}
-        </button>
-        {this.state.showEvening && this.renderSections('evening')}
-        <button type="submit">Submit</button>
+        <Section>
+          <Row>
+            <Header>Morning</Header>
+            <ToggleButton onClick={this.toggleShowMorning}>
+              {this.state.showMorning ? '-' : '+'}
+            </ToggleButton>
+          </Row>
+          {this.state.showMorning && this.renderSections('morning')}
+        </Section>
+        <Section evening>
+          <Row>
+            <Header>Evening</Header>
+            <ToggleButton onClick={this.toggleShowEvening}>
+              {this.state.showEvening ? '-' : '+'}
+            </ToggleButton>
+          </Row>
+          {this.state.showEvening && this.renderSections('evening')}
+        </Section>
+        <SubmitButton type="submit">Submit</SubmitButton>
       </Form>
     );
   }
