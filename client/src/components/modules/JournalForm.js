@@ -100,7 +100,7 @@ class JournalForm extends React.Component {
           {this.state.showEvening && this.renderSections('evening')}
         </FormSection>
         <SubmitButton disabled={pristine || submitting} type="submit">
-          Save
+          {submitting ? 'Saving...' : 'Save'}
         </SubmitButton>
       </Form>
     );
