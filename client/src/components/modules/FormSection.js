@@ -7,12 +7,15 @@ const Section = styled('div')`
   border: ${({ theme }) => `1px solid ${theme.default.grey500}`};
   border-radius: ${({ evening }) =>
     evening ? '0 0 0.25rem 0.25rem' : '0.25rem 0.25rem 0 0'};
-  padding: 1rem 2rem 4rem;
+  padding: ${({ show }) => (show ? '0 2rem 4rem' : '0 2rem')};
   width: 100%;
 `;
 
 const Row = styled('div')`
-  position: relative;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 2rem 1fr 2rem;
+  justify-content: center;
 `;
 
 const Header = styled('h3')`
@@ -20,29 +23,31 @@ const Header = styled('h3')`
   font-family: ${({ theme }) => theme.default.titleFont.family};
   font-weight: ${({ theme }) => theme.default.titleFont.lightWeight};
   font-size: 1.8rem;
+  grid-column: 2;
   text-align: center;
 `;
 
 const ToggleButton = styled('button')`
-  background: ${({ evening, theme }) =>
-    evening ? theme.default.primary800 : theme.default.primary300};
+  align-items: center;
+  background: none;
   border: none;
   border-radius: 50%;
-  color: white;
-  font-size: 1.2rem;
-  height: 2rem;
-  position: absolute;
-  right: 0;
-  top: 0.2rem;
-  width: 2rem;
+  color: ${({ evening, theme }) =>
+    evening ? theme.default.primary300 : theme.default.primary800};
+  cursor: pointer;
+  display: flex;
+  font-size: 2.2rem;
+  grid-column: 3;
+  justify-content: center;
+  line-height: 2rem;
 `;
 
 const FormSection = ({ children, evening, onClick, show, timeOfDay }) => (
-  <Section evening={evening}>
+  <Section evening={evening} show={show}>
     <Row>
       <Header>{timeOfDay}</Header>
       <ToggleButton evening={evening} onClick={onClick}>
-        {show ? '-' : '+'}
+        {show ? '–' : '+'}
       </ToggleButton>
     </Row>
     {children}

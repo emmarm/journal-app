@@ -22,10 +22,14 @@ const SubmitButton = styled('button')`
   border: none;
   border-radius: 0.25rem;
   color: white;
+  cursor: pointer;
   font-size: 1.3rem;
-  margin: 3rem;
+  margin: 2rem;
   padding: 1rem 2rem;
   text-transform: uppercase;
+  &:hover {
+    background: ${({ theme }) => theme.default.primary400};
+  }
 `;
 
 class JournalForm extends React.Component {
@@ -49,10 +53,16 @@ class JournalForm extends React.Component {
       console.log('fields[section.type]: ', fields[section.type]);
       console.log('section: ', section);
       return section.count > 1 ? (
-        <FormGroup key={section.type} {...section} {...fields[section.type]} />
+        <FormGroup
+          key={section.type}
+          {...section}
+          {...fields[section.type]}
+          evening={timeOfDay === 'evening'}
+        />
       ) : (
         <Field
           component={FormField}
+          evening={timeOfDay === 'evening'}
           key={section.type}
           legend
           name={section.type}
@@ -83,7 +93,7 @@ class JournalForm extends React.Component {
         >
           {this.state.showEvening && this.renderSections('evening')}
         </FormSection>
-        <SubmitButton type="submit">Submit</SubmitButton>
+        <SubmitButton type="submit">Save</SubmitButton>
       </Form>
     );
   }

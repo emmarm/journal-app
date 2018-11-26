@@ -15,7 +15,8 @@ const Fieldset = styled('fieldset')`
 `;
 
 const Legend = styled('legend')`
-  color: ${({ theme }) => theme.default.primary900};
+  color: ${({ evening, theme }) =>
+    evening ? theme.default.primary200 : theme.default.primary900};
   font-family: ${({ theme }) => theme.default.titleFont.family};
   font-size: 1.2rem;
   margin-bottom: ${({ legend }) => legend && '1rem'};
@@ -25,13 +26,14 @@ const Legend = styled('legend')`
 
 class FormGroup extends React.Component {
   renderFields = () => {
-    const { count, name, title } = this.props;
+    const { count, evening, name, title } = this.props;
 
     return new Array(count)
       .fill()
       .map((item, index) => (
         <Field
           component={FormField}
+          evening={evening}
           key={`${name}${index + 1}`}
           label={`${index + 1}.`}
           name={`${name}${index + 1}`}
@@ -43,7 +45,7 @@ class FormGroup extends React.Component {
   render() {
     return (
       <Fieldset>
-        <Legend>
+        <Legend evening={this.props.evening}>
           {fields[this.props.type].label}
           ...
         </Legend>
