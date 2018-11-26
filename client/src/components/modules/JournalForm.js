@@ -28,7 +28,12 @@ const SubmitButton = styled('button')`
   padding: 1rem 2rem;
   text-transform: uppercase;
   &:hover {
-    background: ${({ theme }) => theme.default.primary400};
+    background: ${({ disabled, theme }) =>
+      !disabled && theme.default.primary400};
+  }
+  &:disabled {
+    background: ${({ theme }) => theme.default.grey500};
+    cursor: default;
   }
 `;
 
@@ -72,6 +77,7 @@ class JournalForm extends React.Component {
     });
   };
   render() {
+    const { pristine, submitting } = this.props;
     return (
       <Form
         onSubmit={this.props.handleSubmit(values =>
@@ -93,20 +99,12 @@ class JournalForm extends React.Component {
         >
           {this.state.showEvening && this.renderSections('evening')}
         </FormSection>
-        <SubmitButton type="submit">Save</SubmitButton>
+        <SubmitButton disabled={pristine || submitting} type="submit">
+          Save
+        </SubmitButton>
       </Form>
     );
   }
-}
-
-function validate(values) {
-  const errors = {};
-
-  if (!values.gratefulFor) {
-    errors.gratefulFor = `Please add something you're grateful for.`;
-  }
-
-  return errors;
 }
 
 const mapStateToProps = state => ({
@@ -116,6 +114,5 @@ const mapStateToProps = state => ({
 const StatefulJournalForm = connect(mapStateToProps)(JournalForm);
 
 export default reduxForm({
-  form: 'journalForm',
-  validate
+  form: 'journalForm'
 })(StatefulJournalForm);
