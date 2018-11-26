@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
+import { injectGlobal } from 'emotion';
 import { ThemeProvider } from 'emotion-theming';
 
 import App from './components/App';
@@ -17,36 +18,64 @@ const store = createStore(
 );
 
 const theme = {
-  titleFont: {
-    family: 'Lora, serif',
-    style: 'italic',
-    weight: '400'
-  },
-  bodyFont: {
-    family: 'Montserrat, sans-serif',
-    weight: '300'
-  },
   default: {
-    grey100: '#dcdcdc',
-    grey200: '#c3c3c3',
-    grey300: '#aaaaaa',
-    grey400: '#919191',
-    grey500: '#787878',
-    grey600: '#5f5f5f',
-    grey700: '#464646',
-    grey800: '#2d2d2d',
-    grey900: '#141414',
-    primary100: '#FFDFC7',
-    primary200: '#FFC296',
-    primary300: '#FFA564',
-    primary400: '#FF8732',
-    primary500: '#FF6A00',
-    primary600: '#CA5400',
-    primary700: '#963E00',
-    primary800: '#622800',
-    primary900: '#2E1300'
+    titleFont: {
+      family: 'Muli, serif',
+      lightWeight: '200',
+      heavyWeight: '800'
+    },
+    bodyFont: {
+      family: '"Cormorant Upright", sans-serif'
+    },
+    boxShadow: '0 0 3px 0 rgba(0,0,0,0.15), 1px 1px 5px 3px rgba(0,0,0,0.15)',
+    grey100: '#E8E8E8',
+    grey200: '#C9C9C9',
+    grey300: '#ACACAC',
+    grey400: '#8E8E8E',
+    grey500: '#707070',
+    grey600: '#585858',
+    grey700: '#404040',
+    grey800: '#292929',
+    grey900: '#111111',
+    primary100: '#F1E9FC',
+    primary200: '#DFCCF9',
+    primary300: '#CDAFF5',
+    primary400: '#BB92F2',
+    primary500: '#A976EF',
+    primary600: '#855DBC',
+    primary700: '#61448A',
+    primary800: '#3E2B58',
+    primary900: '#1B1226',
+    secondary100: '#E7EBF6',
+    secondary200: '#C9D0EA',
+    secondary300: '#ABB7DF',
+    secondary400: '#8C9DD4',
+    secondary500: '#6E83C9',
+    secondary600: '#56679E',
+    secondary700: '#3F4B74',
+    secondary800: '#28304A',
+    secondary900: '#111420',
+    accentGreen100: '#DAECEF',
+    accentGreen200: '#AAD3DB',
+    accentGreen300: '#7ABBC7',
+    accentGreen400: '#4AA3B3',
+    accentGreen500: '#1A8B9F',
+    accentGreen600: '#146D7D',
+    accentGreen700: '#0F505B',
+    accentGreen800: '#09333B',
+    accentGreen900: '#041619'
   }
 };
+
+injectGlobal`
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+`;
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

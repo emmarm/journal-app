@@ -1,8 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
+import styled from 'react-emotion';
 
 import * as actions from '../actions';
+
+const Button = styled('button')`
+  background-color: ${({ theme }) => theme.default.accentGreen400};
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: ${({ theme }) => theme.default.boxShadow};
+  font-family: ${({ theme }) => theme.default.titleFont.family};
+  color: white;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+`;
 
 const StripeButton = ({ handleToken }) => (
   <StripeCheckout
@@ -15,7 +27,7 @@ const StripeButton = ({ handleToken }) => (
     stripeKey={process.env.REACT_APP_STRIPE_KEY}
     token={token => handleToken(token)}
   >
-    <button>Get Premium</button>
+    <Button>Get Premium</Button>
   </StripeCheckout>
 );
 

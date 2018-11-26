@@ -2,9 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
+import styled from 'react-emotion';
 
 import * as actions from '../actions';
 import JournalForm from './modules/JournalForm';
+
+const Page = styled('div')`
+  background: ${({ theme }) => theme.default.secondary100};
+  margin: 0;
+  padding: 2rem;
+  width: 100vw;
+`;
+
+const Title = styled('h2')`
+  font-family: ${({ theme }) => theme.default.titleFont.family};
+  font-weight: ${({ theme }) => theme.default.titleFont.lightWeight};
+  font-size: 1.5rem;
+  text-align: center;
+`;
 
 class NewJournalPage extends React.Component {
   handleSubmitJournal = values => {
@@ -31,10 +46,10 @@ class NewJournalPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>{moment().format('dddd, MMMM Do YYYY')}</h2>
+      <Page>
+        <Title>{moment().format('MMMM Do, YYYY')}</Title>
         <JournalForm handleSubmitJournal={this.handleSubmitJournal} />
-      </div>
+      </Page>
     );
   }
 }

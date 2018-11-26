@@ -5,6 +5,7 @@ import styled from 'react-emotion';
 
 import * as journals from '../../constants/journalTypes';
 import * as fields from '../../constants/fieldTypes';
+import FormSection from './FormSection';
 import FormGroup from './FormGroup';
 import FormField from './FormField';
 
@@ -12,38 +13,8 @@ const Form = styled('form')`
   align-items: center;
   display: flex;
   flex-direction: column;
-  max-width: 30rem;
-`;
-
-const Section = styled('div')`
-  background: ${({ theme, evening }) =>
-    evening ? theme.default.grey900 : theme.default.primary100};
-  width: 100%;
-`;
-
-const Row = styled('div')`
-  align-items: center;
-  display: grid;
-  grid-template-columns: 1fr 3rem;
-`;
-
-const Header = styled('h3')`
-  color: ${({ theme }) => theme.default.primary500};
-  font-family: ${({ theme }) => theme.titleFont.family};
-  font-size: 2rem;
-  font-style: ${({ theme }) => theme.titleFont.style};
-  font-weight: ${({ theme }) => theme.titleFont.weight};
-  margin: 1rem;
-  text-align: center;
-`;
-
-const ToggleButton = styled('button')`
-  background: ${({ theme }) => theme.default.primary400};
-  border: none;
-  border-radius: 0.25rem;
-  color: white;
-  height: 2rem;
-  width: 2rem;
+  margin: 0 auto;
+  width: 35rem;
 `;
 
 const SubmitButton = styled('button')`
@@ -51,7 +22,9 @@ const SubmitButton = styled('button')`
   border: none;
   border-radius: 0.25rem;
   color: white;
-  padding: 0.5rem 1rem;
+  font-size: 1.3rem;
+  margin: 3rem;
+  padding: 1rem 2rem;
   text-transform: uppercase;
 `;
 
@@ -73,13 +46,16 @@ class JournalForm extends React.Component {
 
   renderSections = timeOfDay => {
     return journals[this.props.journalType][timeOfDay].map(section => {
+      console.log('fields[section.type]: ', fields[section.type]);
+      console.log('section: ', section);
       return section.count > 1 ? (
-        <FormGroup key={section.type} {...section} />
+        <FormGroup key={section.type} {...section} {...fields[section.type]} />
       ) : (
         <Field
-          key={section.type}
-          name={section.type}
           component={FormField}
+          key={section.type}
+          legend
+          name={section.type}
           {...fields[section.type]}
         />
       );
@@ -92,24 +68,21 @@ class JournalForm extends React.Component {
           this.props.handleSubmitJournal(values)
         )}
       >
-        <Section>
-          <Row>
-            <Header>Morning</Header>
-            <ToggleButton onClick={this.toggleShowMorning}>
-              {this.state.showMorning ? '-' : '+'}
-            </ToggleButton>
-          </Row>
+        <FormSection
+          onClick={this.toggleShowMorning}
+          show={this.state.showMorning}
+          timeOfDay="Morning"
+        >
           {this.state.showMorning && this.renderSections('morning')}
-        </Section>
-        <Section evening>
-          <Row>
-            <Header>Evening</Header>
-            <ToggleButton onClick={this.toggleShowEvening}>
-              {this.state.showEvening ? '-' : '+'}
-            </ToggleButton>
-          </Row>
+        </FormSection>
+        <FormSection
+          evening
+          onClick={this.toggleShowEvening}
+          show={this.state.showEvening}
+          timeOfDay="Evening"
+        >
           {this.state.showEvening && this.renderSections('evening')}
-        </Section>
+        </FormSection>
         <SubmitButton type="submit">Submit</SubmitButton>
       </Form>
     );
